@@ -81,7 +81,7 @@ For Render, create a Blueprint from `render.yaml`. Set `GEMINI_API_KEY`, `API_AU
 
 Deploy the **`backend` directory** as the Vercel project root. `index.py` exports the FastAPI app, `.python-version` selects Python 3.12, and `.vercelignore` excludes local secrets, the virtual environment, tests, and SQLite files. Set `GEMINI_API_KEY`, `GEMINI_MODEL`, `API_AUTH_SECRET`, and `ALLOWED_ORIGINS` as Vercel environment variables. Use the extension's `chrome-extension://<ID>` origin for `ALLOWED_ORIGINS`. Configure `DATABASE_URL` with a managed PostgreSQL database for persistent caching. Without it, Vercel uses SQLite in its writable `/tmp` directory; that cache is temporary and may differ between function instances.
 
-Deploy with Vercel CLI from `backend` after signing in and linking the project: `vercel deploy --prod`. Then set the HTTPS deployment URL in extension Settings and press **Save and test**. The Chrome extension itself remains an unpacked browser extension; Vercel hosts the API, not an installable extension package.
+This project is linked to `https://universal-ai-quiz-solver.vercel.app`; deploy updates from `backend` with `vercel deploy --prod`. The extension defaults to this HTTPS URL and migrates the previous local default URL once. Its personal API token is the same `API_AUTH_SECRET` configured in Vercel. The Chrome extension itself remains an unpacked browser extension; Vercel hosts the API, not an installable extension package.
 
 ## Known boundaries
 

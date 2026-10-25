@@ -1,5 +1,9 @@
 const $ = id => document.getElementById(id);
-chrome.storage.local.get({backendUrl:'http://127.0.0.1:8000',apiToken:'',imageConsent:false}).then(settings => {
+chrome.storage.local.get({backendUrl:'https://universal-ai-quiz-solver.vercel.app',apiToken:'',imageConsent:false}).then(settings => {
+  if (!settings.cloudMigrationDone && /^http:\/\/(localhost|127\.0\.0\.1):8000\/?$/.test(settings.backendUrl)) {
+    settings.backendUrl = 'https://universal-ai-quiz-solver.vercel.app';
+    chrome.storage.local.set({backendUrl:settings.backendUrl,cloudMigrationDone:true});
+  }
   $('backendUrl').value = settings.backendUrl; $('apiToken').value = settings.apiToken;
   $('imageConsent').checked = settings.imageConsent;
 });

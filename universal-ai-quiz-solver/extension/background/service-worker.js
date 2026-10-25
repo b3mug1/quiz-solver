@@ -1,7 +1,8 @@
+const CLOUD_URL = 'https://universal-ai-quiz-solver.vercel.app';
 const DEFAULTS = {
   enabled: true, clickMode: false, hoverMode: false, explanations: true,
   highlights: true, autoSelect: false, authorizedPractice: false, autoSolve: false,
-  autoSites: [], backendUrl: 'http://127.0.0.1:8000', apiToken: '', imageConsent: false
+  autoSites: [], backendUrl: CLOUD_URL, apiToken: '', imageConsent: false
 };
 const FILES = [
   'content/site-adapters.js', 'content/question-parser.js',
@@ -46,7 +47,15 @@ async function unregisterAllSites() {
   return {ok: true};
 }
 
-async function settings() { return chrome.storage.local.get(DEFAULTS); }
+async function settings() {
+  const value = await chrome.storage.local.get(DEFAULTS);
+  if (!value.cloudMigrationDone && /^http:\/\/(localhost|127\.0\.0\.1):8000\/?$/.test(value.backendUrl)) {
+    value.backendUrl = CLOUD_URL;
+    value.cloudMigrationDone = true;
+    await chrome.storage.local.set({backendUrl: CLOUD_URL, cloudMigrationDone: true});
+  }
+  return value;
+}
 function baseUrl(value) {
   const url = new URL(value);
   if (url.protocol !== 'https:' && !(url.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(url.hostname))) {

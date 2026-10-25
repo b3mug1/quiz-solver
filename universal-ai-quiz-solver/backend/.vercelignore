@@ -1,0 +1,11 @@
+.env
+.env.*
+.venv
+.pytest_cache
+.ruff_cache
+__pycache__
+*.pyc
+*.db
+tests
+Dockerfile
+requirements-dev.txt

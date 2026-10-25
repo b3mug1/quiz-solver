@@ -1,0 +1,5 @@
+:root { color-scheme: dark; font: 14px system-ui,sans-serif; background: #101626; color: #eff3ff; }
+body { width: 320px; margin: 0; } header { padding: 16px; background: #1b2540; } h1 { font-size: 18px; margin: 0 0 4px; } header p { margin: 0; color: #aac7ee; }
+main { padding: 14px 16px; } label { display: flex; align-items: center; gap: 8px; padding: 7px 0; } input { accent-color: #5dd6b0; } .actions { display:flex; gap:6px; margin-top:12px; }
+button { padding: 8px 10px; border: 1px solid #7284aa; border-radius: 6px; background: #294263; color: white; cursor: pointer; } button:hover,button:focus-visible { background: #3c5c87; } button:disabled { opacity: .5; }
+#message { min-height: 20px; color: #bce8d7; }

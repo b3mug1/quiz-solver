@@ -67,6 +67,7 @@ def headers():
 
 def test_health_and_auth(setup):
     client, _, _ = setup
+    assert client.get("/").json()["name"] == "Universal AI Quiz Solver API"
     assert client.get("/api/v1/health").json() == {"status": "ok"}
     assert client.get("/api/v1/status").status_code == 401
     assert client.get("/api/v1/models", headers=headers()).json()["configured_model"]

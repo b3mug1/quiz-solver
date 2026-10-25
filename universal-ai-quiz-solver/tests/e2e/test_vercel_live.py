@@ -8,7 +8,6 @@ import pytest
 from dotenv import dotenv_values
 from playwright.sync_api import sync_playwright
 
-
 ROOT = Path(__file__).resolve().parents[2]
 DEPLOYMENT = "https://universal-ai-quiz-solver.vercel.app"
 

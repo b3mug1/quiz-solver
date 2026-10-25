@@ -67,6 +67,10 @@ def create_app(settings: Settings | None = None, solver: QuizSolver | None = Non
             raise HTTPException(status_code=429, detail="Rate limit exceeded")
         bucket.append(now)
 
+    @app.get("/")
+    async def root():
+        return {"name": "Universal AI Quiz Solver API", "status": "ok", "docs": "/docs"}
+
     @app.get("/api/v1/health")
     async def health():
         return {"status": "ok"}
